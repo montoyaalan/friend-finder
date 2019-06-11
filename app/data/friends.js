@@ -42,3 +42,10 @@ connection.connect(error => {
     
 *****************************************************************************
 *****************************************************************************/
+module.exports = function FriendFinder() {
+    // Scope-safe constructor
+    if (!(this instanceof FriendFinder)) {
+        return new FriendFinder();
+    }
+
+    let friends;
