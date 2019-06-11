@@ -37,3 +37,15 @@ router.post("/friends", (req, res) => {
     };
     
     const friend = friendFinder.findBestFriend(profile);
+
+        // Add the user's profile to the database
+        friendFinder.addFriend(profile);
+    
+        res.send({
+            "my_name"         : profile.name,
+            "friend_name"     : friend.name,
+            "friend_photo_url": friend.photo_url
+        });
+    });
+    
+    module.exports = router;
