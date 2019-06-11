@@ -18,3 +18,18 @@ const pool = mysql.createPool({
     "database"          : "yfpdqkylr03ge45y",
     "multipleStatements": true
 });
+
+/* For testing on localhost
+const connection = mysql.createConnection({
+    "host"              : "localhost",
+    "port"              : 3306,
+    "user"              : "root",
+    "password"          : "",
+    "database"          : "friend_finder_db",
+    "multipleStatements": true
+});
+connection.connect(error => {
+    if (error) throw error;
+    console.log(`Database connected as thread ${connection.threadId}.`);
+});
+*/
