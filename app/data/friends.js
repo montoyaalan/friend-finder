@@ -63,3 +63,20 @@ module.exports = function FriendFinder() {
     }));
 });
 
+ /************************************************************************
+        
+        Private methods
+        
+    *************************************************************************/
+   function findDifference(a, b) {
+    let score = 0;
+
+    for (let i = 0; i < a.answers.length; i++) {
+        score += Math.abs(b.answers[i] - a.answers[i]);
+    }
+
+    return score;
+}
+
+
+/************************************************************************
