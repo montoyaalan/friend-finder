@@ -27,3 +27,13 @@ const friendFinder = new FriendFinder();
 router.get("/friends", (req, res) => {
     res.json(friendFinder.getFriends());
 });
+
+// Find the most compatible friend
+router.post("/friends", (req, res) => {
+    const profile = {
+        "name"     : req.body.name,
+        "photo_url": (validUrl.isUri(req.body.photo_url)) ? req.body.photo_url : "",
+        "answers"  : req.body.answers.map(a => parseInt(a))
+    };
+    
+    const friend = friendFinder.findBestFriend(profile);
