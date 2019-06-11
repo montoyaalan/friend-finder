@@ -80,3 +80,31 @@ module.exports = function FriendFinder() {
 
 
 /************************************************************************
+ * Public methods
+        
+    *************************************************************************/
+   this.addFriend = function(profile) {
+    const sql_command =
+        `INSERT INTO friends (name, photo_url, answers)
+         VALUES ("${profile.name}", "${profile.photo_url}", "${JSON.stringify(profile.answers)}");
+         SELECT id FROM friends ORDER BY id DESC LIMIT 1;`;
+
+    pool.query(sql_command, (error, results) => {
+        if (error) throw error;
+
+        // Save a local copy
+        friends.push(Object.assign({}, {"id": results[1][0].id}, profile));
+    });
+}
+
+this.getFriends = function() {
+    return friends;
+}
+
+this.findBestFriend = function(profile) {
+    // The lower the difference in compatibility, the better
+    friends.sort((a, b) => findDifference(a, profile) - findDifference(b, profile));
+
+    return friends[0];
+}
+}
