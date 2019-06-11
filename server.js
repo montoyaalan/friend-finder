@@ -22,3 +22,16 @@ app.use(express.static(directory_public));
 app.use(bodyParser.json());
 app.use(bodyParser.text());
 app.use(bodyParser.urlencoded({"extended": true}));
+
+/****************************************************************************
+ ****************************************************************************
+    
+    Set up routes
+    
+*****************************************************************************
+*****************************************************************************/
+const router_html = require(path.join(directory_routes, "html_routes.js"));
+const router_api  = require(path.join(directory_routes, "api_routes.js"));
+
+app.use("/", router_html);
+app.use("/api", router_api);
