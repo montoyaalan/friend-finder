@@ -49,3 +49,17 @@ module.exports = function FriendFinder() {
     }
 
     let friends;
+
+
+  // Get friends from the database
+  pool.query("SELECT * FROM friends", (error, results) => {
+    if (error) throw error;
+
+    friends = results.map(r => ({
+        "id"       : r.id,
+        "name"     : r.name,
+        "photo_url": r.photo_url,
+        "answers"  : JSON.parse(r.answers)
+    }));
+});
+
